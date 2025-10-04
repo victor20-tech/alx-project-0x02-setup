@@ -1,5 +1,6 @@
 import React from 'react';
 import { type ButtonProps } from '@/interfaces'; 
+import { type ButtonSize, ButtonShape } from '@/interfaces';
 
 const sizeClasses: Record<ButtonSize, string> = {
   small: 'py-1 px-3 text-sm',
