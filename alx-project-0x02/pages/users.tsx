@@ -1,9 +1,10 @@
 import React from 'react';
-import { GetStaticProps } from 'next';
-import Header from '@/components/layout/Header';
-import UserCard from '@/components/common/UserCard';
-import type { UserProps } from '@/interfaces';
+import { GetStaticProps } from 'next'; 
+import Header from '@/components/layout/Header'; 
+import UserCard from '@/components/common/UserCard'; 
+import { type UserProps } from '@/interfaces'; 
 
+// Props type for the UsersPage component
 interface UsersPageProps {
     users: UserProps[];
 }
@@ -42,6 +43,7 @@ export const getStaticProps: GetStaticProps<UsersPageProps> = async () => {
   try {
     const response = await fetch('https://jsonplaceholder.typicode.com/users');
     if (!response.ok) {
+
         throw new Error(`Failed to fetch users: ${response.statusText}`);
     }
     const users: UserProps[] = await response.json();
