@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../components/common/Card'; // Import the new Card component
+import Card from "@/components/common/Card";
 
 const Home: React.FC = () => {
   return (
