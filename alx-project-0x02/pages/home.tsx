@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Header from '@/components/layout/Header';
 import Card from '@/components/common/Card';
 import PostModal from '@/components/common/PostModal';
 import type { NewPostData, CardProps } from '@/interfaces'; 
@@ -25,51 +26,52 @@ const Home: React.FC = () => {
 
   const handleAddPost = (newPost: NewPostData) => {
     setUserPosts((prevPosts) => [
-      { ...newPost, title: `[User Post] ${newPost.title}` }, // Prefix for clarity
+      { ...newPost, title: `[User Post] ${newPost.title}` },
       ...prevPosts,
     ]);
   };
 
   return (
-    <main className="container mx-auto p-8">
+    <div className="min-h-screen bg-gray-50"> 
+      <Header />
       
-      <h1 className="text-5xl font-extrabold text-blue-700 text-center mb-6">
-        Welcome Home!
-      </h1>
-      
-      <div className="flex justify-center mb-10">
-        {/* Button to open the modal (Required by instructions) */}
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105"
-        >
-          Create New Post
-        </button>
-      </div>
+      <main className="container mx-auto p-8">
+        
+        <h1 className="text-5xl font-extrabold text-blue-700 text-center mb-6">
+          Welcome Home!
+        </h1>
+        
+        <div className="flex justify-center mb-10">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-300 transform hover:scale-105"
+          >
+            Create New Post
+          </button>
+        </div>
 
-      <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">
-        Dynamic Content ({userPosts.length} Items)
-      </h2>
+        <h2 className="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">
+          Dynamic Content ({userPosts.length} Items)
+        </h2>
 
-      {/* Grid to display all userPosts using the reusable Card component */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {userPosts.map((post, index) => (
-          <Card 
-            key={index} 
-            title={post.title} 
-            content={post.content}
-          />
-        ))}
-      </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {userPosts.map((post, index) => (
+            <Card 
+              key={index} 
+              title={post.title} 
+              content={post.content}
+            />
+          ))}
+        </div>
 
-      {/* The Modal Component */}
-      <PostModal 
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSubmit={handleAddPost}
-      />
-      
-    </main>
+        <PostModal 
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onSubmit={handleAddPost}
+        />
+        
+      </main>
+    </div>
   );
 };
 
