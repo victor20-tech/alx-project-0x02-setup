@@ -25,3 +25,10 @@ export interface ButtonProps {
   shape: ButtonShape;
   color?: 'primary' | 'secondary' | 'danger'; 
 }
+
+export interface PostProps {
+    userId: number;
+    id: number;
+    title: string;
+    content: string;
+}
